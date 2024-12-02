@@ -58,7 +58,7 @@ const cardArray = {
     
 }
 
-type Cards = {card: string; cardValue: string }[];
+type Cards = {card: string; cardValue: string; flipped: boolean }[];
 
 const MAX_ATTEMPTS = 100;
 
@@ -78,6 +78,7 @@ export const getNewCard = (playerCards: Cards): Cards => {
     if (playerCards.length < 2) {
         const initialCards: string[] = [];
         let attempts = 0;
+        const flipped = false;
         
         while (initialCards.length < 2 && attempts < MAX_ATTEMPTS) {
             const newCard = generateCard();
@@ -94,12 +95,12 @@ export const getNewCard = (playerCards: Cards): Cards => {
 
         return initialCards.map(card => {
             const cardValue = card.slice(1);
-            return { card, cardValue };
+            return { card, cardValue, flipped };
         });
     }
 
     const singleCard = generateCard();
-    return [{ card: singleCard.card, cardValue: singleCard.cardValue }];
+    return [{ card: singleCard.card, cardValue: singleCard.cardValue, flipped: false }];
 };
 
 

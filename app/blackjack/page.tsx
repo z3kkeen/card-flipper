@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 
-type CardType = { card: string; cardValue: string };
+type CardType = { card: string; cardValue: string; flipped: boolean; };
 
 const sourceArray = {
   color: [
@@ -125,7 +125,7 @@ export default function Game() {
   
       dealerPlay();
     }
-  }, [isPlayerTurn]);
+  }, [isPlayerTurn, dealerCards, playerCards]);
 
   useEffect(() => {
     const playerTotal = calculateScore(playerCards);
